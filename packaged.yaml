@@ -8,7 +8,7 @@ Resources:
         ApiEvent:
           Properties:
             Method: get
-            Path: /
+            Path: /test-lambda
             RestApiId:
               Ref: ApiGatewayApi
           Type: Api
@@ -18,6 +18,6 @@ Resources:
   ApiGatewayApi:
     Properties:
       EndpointConfiguration: REGIONAL
-      StageName: prod
+      StageName: deployed
     Type: AWS::Serverless::Api
 Transform: AWS::Serverless-2016-10-31

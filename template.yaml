@@ -5,8 +5,9 @@ Resources:
   ApiGatewayApi:
     Type: AWS::Serverless::Api
     Properties:
-      StageName: prod
+      StageName: deployed
       EndpointConfiguration: REGIONAL
+      Cors: "'*'"
   ApiFunction: # Adds a GET api endpoint at "/" to the ApiGatewayApi via an Api event
     Type: AWS::Serverless::Function
     Properties:
@@ -14,7 +15,7 @@ Resources:
         ApiEvent:
           Type: Api
           Properties:
-            Path: /
+            Path: /test-lambda
             Method: get
             RestApiId:
               Ref: ApiGatewayApi
