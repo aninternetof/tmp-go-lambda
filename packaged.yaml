@@ -1,0 +1,23 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: AWS SAM template with a simple API definition
+Resources:
+  ApiFunction:
+    Properties:
+      CodeUri: s3://test-lambda-deploy-blh2/9abc76ebe7ac8345e8af1d1f6977c716
+      Events:
+        ApiEvent:
+          Properties:
+            Method: get
+            Path: /
+            RestApiId:
+              Ref: ApiGatewayApi
+          Type: Api
+      Handler: hello-world
+      Runtime: go1.x
+    Type: AWS::Serverless::Function
+  ApiGatewayApi:
+    Properties:
+      EndpointConfiguration: REGIONAL
+      StageName: prod
+    Type: AWS::Serverless::Api
+Transform: AWS::Serverless-2016-10-31
